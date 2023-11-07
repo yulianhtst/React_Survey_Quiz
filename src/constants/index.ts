@@ -1,0 +1,5 @@
+export const RESULT_BG =
+  "https://s3-alpha-sig.figma.com/img/ba1b/5fee/c77ec1fc9d27c36047d092f5787f5336?Expires=1699833600&Signature=cHuUMb5HpvOiLGPbfpghkNdJ4RDwdgZlDQYqvCWy2-WgZxnj7cZpFXFwYL2XzYplTMop9A3Il1uSo~1qd7jpE2Ifs9a4W1VorPRP1zOIuay0gDlGOAkHsWk9nUkF8VQJ6FHzPIOpJxFmQ9Ct58iEx3qoXmhBWV~IpE-FKme4IYpiRtxGh2Q2lZFkks-WrrRCWzS-okNEA6PXAvEu0owt2UGwIb82f8f-FALS2I3uv4PLrowW2Is-Cja4N4huUDcQe1QetdKxf2Dvg--ArmaHyf9tJ036L6GcqcwGvSV~SeOJ5joAsPmGr5xWG5MywNTMFMAl2x~-jRmZv1XF5JsDiQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4";
+export const ENDPOINT_URL =
+  "https://jeval.com.au/collections/hair-care/products.json?page=1";
+  export const QUIZ_BG="https://s3-alpha-sig.figma.com/img/9015/5e76/9545e9b86afd1e9c431704007c1c0714?Expires=1700438400&Signature=QU3Ie4yHTcjPQftVQIGgyrWyqhogii9r9BW75mROykKqqHLzIGRer65vI62O5C9UJ6c0v9ux7nBMdARI9h~HdmDFPBjhmAD6R8dc7KfyPMx~OnAzXQRnOtTDA7Vq5UH9vo5YVin~5FGv1aylDiIvjlwX0j8XwYM7AsvZItmNVcsZ2OPa4ORv0VwHdUQPpU7OEZlPSsiLJ7lUp32CZ~~LGFiRUgt5toeYU7VgWQtxmuVWApPPP7lr1-5jCGSkXir~SiHmVSbY477~lUkRUslv9tX0kWSDFZWfpmKKUOBechiJ7alxo4oKYm5XvAZioCsk2wkaXSW47UDK3QNNKThbjQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
