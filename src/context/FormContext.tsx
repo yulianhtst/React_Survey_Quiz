@@ -1,74 +1,96 @@
-import { createContext, useState } from "react";
+import { MouseEvent, MouseEventHandler, ReactNode, createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const FormContext = createContext({});
+type FormContextProps = {
+    setSingleAnswer: (e: MouseEvent<HTMLDivElement>, buttonIndex: number) => void;
+    setMultipleAnswers: (e: MouseEvent<HTMLDivElement>, buttonIndex: number) => void;
+    onClickNavigate: () => void;
+    nullifyForm: () => void;
+    form: any;
+}
 
+type FormProviderProps = {
+    children: ReactNode;
+    paths: Array<string>,
+}
+
+export const FormContext = createContext<FormContextProps | undefined>(undefined);
 
 export const FormProvider = ({
     children,
     paths,
-}: any) => {
-    const [form, setForm] = useState<any>({})
+}: FormProviderProps) => {
+    const [form, setForm] = useState<any>({});
     const navigate = useNavigate();
-    const { pathname } = useLocation()
+    const { pathname } = useLocation();
 
     const nullifyForm = () => {
         setForm({})
     }
 
 
-    const setMultipleAnswers = (e, buttonIndex) => {
-        const answer = e.target.textContent;
+    const setMultipleAnswers = (
+        e: MouseEvent<HTMLDivElement>,
+        buttonIndex: number
+    ) => {
+        const button = e.currentTarget
+        const answer = button.textContent;
+
         const clickedValue = form?.[pathname]?.[buttonIndex]?.answers;
 
         const buttonAtr = e.currentTarget.getAttribute('data-value');
         const enchancedAnswer = buttonAtr.concat(answer.toLowerCase().slice(3))
 
         if (clickedValue === answer) {
-            setForm((prevForm) => ({
+            setForm((prevForm: any) => ({
                 ...prevForm,
                 [pathname]: {
-                    ...(prevForm[pathname] || {}), // Get the existing object at the index or create an empty object
-                    [buttonIndex]: { clicked: false, answers: '' }, // Set the answer at the sub-index i
+                    ...(prevForm[pathname] || {}),
+                    [buttonIndex]: { clicked: false, answers: '' },
                 },
             }));
         } else {
-            setForm((prevForm) => ({
+            setForm((prevForm: any) => ({
                 ...prevForm,
                 [pathname]: {
-                    ...(prevForm[pathname] || {}), // Get the existing object at the index or create an empty object
+                    ...(prevForm[pathname] || {}),
                     [buttonIndex]: {
                         clicked: true, ...(enchancedAnswer
                             ? { answers: enchancedAnswer }
                             : { answers: answer })
-                    }, // Set the answer at the sub-index i
+                    },
                 },
             }));
         }
     };
-    const setSingleAnswer = (e: any, buttonIndex) => {
+    const setSingleAnswer = (
+        e: MouseEvent<HTMLDivElement>,
+        buttonIndex: number
+    ) => {
         const clickedValue = form?.[pathname]?.[buttonIndex]?.answers;
 
-        const answer = e.target.textContent;
+        const button = e.currentTarget
+        const answer = button.textContent;
+
         const buttonAtr = e.currentTarget.getAttribute('data-value');
         const enchancedAnswer = buttonAtr.concat(answer.toLowerCase().slice(3))
 
         if (clickedValue === answer) {
-            setForm((prevForm) => ({
+            setForm((prevForm: any) => ({
                 ...prevForm,
                 [pathname]: {
-                    [buttonIndex]: { clicked: false, answers: '' }, // Set the answer at the sub-index i
+                    [buttonIndex]: { clicked: false, answers: '' },
                 },
             }));
         } else {
-            setForm((prevForm) => ({
+            setForm((prevForm: any) => ({
                 ...prevForm,
                 [pathname]: {
                     [buttonIndex]: {
                         clicked: true, ...(enchancedAnswer
                             ? { answers: enchancedAnswer }
                             : { answers: answer })
-                    }, // Set the answer at the sub-index i
+                    },
                 },
             }));
         }

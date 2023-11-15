@@ -1,3 +1,5 @@
+import { CSSProperties } from "react"
+
 const NextSVG = (
     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Frame">
@@ -28,7 +30,7 @@ export const SlideButton = ({ onClick, right, left }: any) => {
                     top: '30%',
                     right: "-70px",
                 })
-            }}>
+            } as CSSProperties}>
             <div
 
                 style={{

@@ -62,7 +62,7 @@ function App() {
         <Routes>
           <Route path="/" element={<QuizPage />} />
 
-          {questions.map(({ path, answers, question, multiple,value }, index) => (
+          {questions.map(({ path, answers, question, multiple, value }, index) => (
             <Route key={index} path={path} element={(
               // <FormProvider index={index} paths={paths}>
               <Question

@@ -20,11 +20,11 @@ export const useFetch = () => {
         (async () => {
             const data = await fetch(ENDPOINT_URL)
             const result = await data.json()
-            //
-            const filtered = result.products.filter(x => {
+
+            const filtered = result.products.filter((x: { tags: string }) => {
                 return criteria.some(criterion => x.tags.includes(criterion));
+
             });
-            console.log(filtered);
 
             setItems(filtered)
         })()

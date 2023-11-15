@@ -1,7 +1,32 @@
-import { useContext, useRef, useState, useEffect } from "react";
+import { useContext, useRef, useState, useEffect, ReactNode, MouseEvent, CSSProperties } from "react";
 import styles from "./Button.module.scss"
 import { FormContext } from "../../../context/FormContext";
 import { useLocation } from "react-router-dom";
+
+type QuizButtonProps = {
+    content: ReactNode;
+    style: React.CSSProperties;
+    index?: number;
+    multiple?: boolean;
+    navigation?: boolean;
+    value?: string;
+}
+type FormContextProps = {
+    setSingleAnswer: (e: MouseEvent<HTMLDivElement>, buttonIndex: number) => void;
+    setMultipleAnswers: (e: MouseEvent<HTMLDivElement>, buttonIndex: number) => void;
+    onClickNavigate: () => void;
+    nullifyForm?: () => void;
+    form: any;
+}
+
+const quizButtonStyles: CSSProperties = {
+    boxSizing: 'border-box',
+    fontSize: '16px',
+    lineHeight: '16px',
+    minWidth: '189px',
+    border: '1px solid #5BC1ED',
+    borderRadius: '8px',
+}
 
 export const QuizButton = ({
     content,
@@ -10,9 +35,9 @@ export const QuizButton = ({
     multiple,
     navigation,
     value
-}: any) => {
+}: QuizButtonProps) => {
     const { pathname } = useLocation()
-    const { setMultipleAnswers, setSingleAnswer, onClickNavigate, form } = useContext<any>(FormContext)
+    const { setMultipleAnswers, setSingleAnswer, onClickNavigate, form } = useContext<FormContextProps>(FormContext)
 
     const visualiseClick = form?.[pathname]?.[index]?.clicked
 
@@ -30,15 +55,9 @@ export const QuizButton = ({
                             : setSingleAnswer(e, index)
                         )
                 }}
-                // onClick={handleClick}
-                data-value={value||""}
+                data-value={value || ""}
                 style={{
-                    boxSizing: 'border-box',
-                    fontSize: '16px',
-                    lineHeight: '16px',
-                    minWidth: '189px',
-                    border: '1px solid #5BC1ED',
-                    borderRadius: '8px',
+                    ...quizButtonStyles,
                     ...(visualiseClick && { backgroundColor: '#EDFFC3' }),
                     ...style,
                 }}

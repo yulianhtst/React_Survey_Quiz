@@ -1,8 +1,10 @@
-import NextSVG from "../../../public/Next.svg"
+import { CSSProperties } from "react"
 
 const infoCard = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', }}>
-        <h1 style={{ margin: '0', fontFamily: 'Grange' }}>Daily routine</h1>
+        <h1 style={{ margin: '0', fontFamily: 'Grange' }}>
+            Daily routine
+        </h1>
         <p style={{
             margin: '0',
             fontFamily: 'Proxima Nova',
@@ -25,7 +27,16 @@ const infoCard = (
     </div>
 )
 
+
+
 export const Card = ({ info, data }: any) => {
+    // const itemHeading = data?.handle.split('-').map(x => x[0].toUpperCase() + x.slice(1)).join(' ')
+    const itemHeading = data?.title
+    const itemPrice = data?.variants?.[0].price
+
+
+
+
     return (
         <div>
             <div style={{
@@ -59,7 +70,7 @@ export const Card = ({ info, data }: any) => {
                             backgroundRepeat: 'no-repeat',
                             backgroundColor: 'rgba(211 211 211 /0.5)',
                             borderRadius: '8px',
-                        }}>
+                        } as CSSProperties}>
 
                         </div>
                         <div style={{
@@ -76,8 +87,9 @@ export const Card = ({ info, data }: any) => {
                                 lineHeight: '110%',
                                 color: '#1C2635',
                                 fontFamily: 'Grange',
+                                textAlign: 'center',
                             }}>
-                                Milk Body Cleanser
+                                {itemHeading}
                             </h1>
                             <p style={{
                                 margin: 0,
@@ -87,13 +99,13 @@ export const Card = ({ info, data }: any) => {
                                 color: '#1C2635',
                                 fontFamily: 'Grange',
                             }}>
-                                $14.00
+                                {itemPrice}
                             </p>
                         </div>
                     </>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 // color: #1C2635;
